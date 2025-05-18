@@ -36,7 +36,7 @@
             tools:text="This is an app that will test your  history knowledge.Please press start to continue" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
