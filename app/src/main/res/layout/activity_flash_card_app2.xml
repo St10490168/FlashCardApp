@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvQuestions"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_marginTop="30dp"
@@ -49,7 +49,7 @@
             app:iconSize="20dp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvAnswer"
             android:layout_width="match_parent"
             android:layout_height="51dp"
             android:layout_marginTop="30dp"
