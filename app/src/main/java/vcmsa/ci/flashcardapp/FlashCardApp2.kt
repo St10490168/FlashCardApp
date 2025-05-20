@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -19,9 +18,10 @@ class FlashCardApp2 : AppCompatActivity() {
                     "North America won the Vietnam War?"
         )
         val answers = booleanArrayOf(true,false,true,true,false)
-        
-        var score = 0
-        var currentQuestionIndex = 0
+        val userAnswer = mutableListOf<Boolean>()
+
+       private var score = 0
+       private var currentQuestionIndex = 0
         
         lateinit var tvQuestion: TextView
         lateinit var trueButton: Button
@@ -33,34 +33,32 @@ class FlashCardApp2 : AppCompatActivity() {
         super.onCreate(savedInstanceState, persistentState)
         setContentView(R.layout.activity_flash_card_app2)
 
-        questions = findViewById(tvQuestion)
+        tvQuestion = findViewById(R.id.tvQuestions)
         falseButton = findViewById(R.id.btnFalse)
         trueButton = findViewById(R.id.btnTrue)
         nextButton = findViewById(R.id.btnNext)
-        answers = findViewById(R.id.tvAnswer)
+        tvAnswer = findViewById(R.id.tvAnswer)
 
-        
         displayQuestion()
         
         trueButton.setOnClickListener { 
-            checkAnswer(
-                true,
-                userAnswer = TODO()
-            )
+            check(true)
         }
+
         falseButton.setOnClickListener { 
-            checkAnswer(
-                false,
-                userAnswer = TODO()
-            )
+            check(false)
         }
-        nextButton.androidx.compose.foundation.layout.Box {
-            setOnClickListener {
+        nextButton.setOnClickListener {
                 currentQuestionIndex
                 if (currentQuestionIndex < questions.size) {
-                    tvAnswer()
+                    displayQuestion()
+                    tvAnswer.text=""
                 } else {
                     val intent = Intent(this,AppCompatActivity::class.java)
+                    intent.putExtra("score", score)
+                    intent.putExtra("userAnswers", userAnswers.toBooleanArray())
+                    intent.putExtra("questions", questions)
+                    intent.putExtra("answers", answers)
                     intent.putExtra("score", score)
                     startActivity(intent)
                     finish()
@@ -77,10 +75,10 @@ class FlashCardApp2 : AppCompatActivity() {
 
     fun checkAnswer(userAnswer: Boolean) {
         if (userAnswer == answers[currentQuestionIndex]) {
-            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show()
+           tvAnswer.text= "Correct"
             score++
         } else {
-            Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show()
+           tvAnswer.text="Incorrect"
         }
     }
 }
