@@ -13,16 +13,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val startButton: Button = findViewById(R.id.btnStart)
+        val btnStart = findViewById<Button>(R.id.btnStart)
 
         //will set on click listener
-        startButton.setOnClickListener {
+        btnStart.setOnClickListener {
             val intent = Intent(this, FlashCardApp2::class.java)
             startActivity(intent)
         }
-
-
-        setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
